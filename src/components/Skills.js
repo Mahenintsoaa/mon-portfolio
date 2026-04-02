@@ -100,7 +100,8 @@ const Skills = () => {
               &nbsp;&nbsp;passion: <span className="code-string">"Créer des applications web innovantes"</span><br />
               {'};'}<br />
               <br />
-              <span className="code-comment">// Toujours en apprentissage</span><br />
+              <br />
+              <span className="code-comment">{'// Toujours en apprentissage'}</span><br />
               <span className="code-keyword">while</span>(coding) {'{'}<br />
               &nbsp;&nbsp;learnNewTech();<br />
               &nbsp;&nbsp;buildProjects();<br />
