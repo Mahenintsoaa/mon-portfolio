@@ -4,7 +4,7 @@ import useTypingEffect from '../hooks/useTypingEffect';
 
 const Hero = () => {
   const typingText = useTypingEffect(
-    ["Développeur Front-End", "Étudiant en Informatique", "Passionné de React", "Amateur de UI/UX Design"],
+    ["Développeur Full-stack", "Étudiant en Informatique", "Amateur de UI/UX Design"],
     100, 50, 2000
   );
 

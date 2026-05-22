@@ -64,7 +64,7 @@ const About = () => {
             <h3>Bonjour, je suis RANAIVOARILALAO Mahenintsoa</h3>
             <p>
               Je suis un étudiant en informatique passionné par le développement web et les nouvelles technologies.
-              Actuellement en licence, je me spécialise dans les technologies front-end et back-end pour créer des
+              Actuellement en Master 1 Informatique (en cours), je me spécialise dans les technologies front-end et back-end pour créer des
               applications web modernes et performantes.
             </p>
             <div className="mt-4">
@@ -101,7 +101,7 @@ const About = () => {
           </Col>
           <Col md={3} xs={6}>
             <div className="counter-item">
-              <div className="counter" data-count="3" ref={el => countersRef.current[2] = el}>0</div>
+              <div className="counter" data-count="4" ref={el => countersRef.current[2] = el}>0</div>
               <p>Années d'études</p>
             </div>
           </Col>
