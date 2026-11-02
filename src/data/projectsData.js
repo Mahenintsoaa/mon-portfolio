@@ -1,7 +1,7 @@
 export const projectsData = {
     1: {
       title: "Portfolio Personnel",
-      description: "Site portfolio développé avec HTML, CSS et JavaScript pour présenter mes projets et compétences. Design responsive et moderne avec animations interactives.",
+      description: "Site portfolio développé avec HTML5, CSS3 et JavaScript pour présenter mes projets et compétences. Design responsive et moderne avec animations interactives.",
       technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Font Awesome"],
       features: [
         "Design responsive et mobile-first",
