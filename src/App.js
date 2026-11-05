@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ThemeProvider } from './contexts/ThemeContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,18 +14,20 @@ import 'aos/dist/aos.css';
 
 function App() {
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true, offset: 100 });
+    AOS.init({ duration: 800, once: true, offset: 80, easing: 'ease-out-cubic' });
   }, []);
 
   return (
     <ThemeProvider>
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Portfolio />
-      <Education />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Portfolio />
+        <Education />
+        <Contact />
+      </main>
       <Footer />
       <BackToTop />
     </ThemeProvider>

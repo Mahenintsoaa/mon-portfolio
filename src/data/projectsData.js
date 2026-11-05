@@ -1,82 +1,130 @@
-export const projectsData = {
-    1: {
-      title: "Portfolio Personnel",
-      description: "Site portfolio développé avec HTML5, CSS3 et JavaScript pour présenter mes projets et compétences. Design responsive et moderne avec animations interactives.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Font Awesome"],
-      features: [
-        "Design responsive et mobile-first",
-        "Animations CSS et JavaScript",
-        "Filtrage des projets par catégorie",
-        "Formulaire de contact avec validation",
-        "Mode sombre/clair",
-        "Navigation fluide"
-      ],
-      images: ["/portf.png"],
-      demoLink: "#portfolio",
-      githubLink: "#"
-    },
-    2: {
-      title: "Système de Gestion du Parc Informatique",
-      description: "Application web complète pour la gestion d'un parc informatique d'entreprise. Permet de suivre l'inventaire des équipements, les maintenances et génère des rapports.",
-      technologies: ["HTML/CSS/JS", "Bootstrap", "PHP", "MySQL", "Chart.js"],
-      features: [
-        "Gestion centralisée du parc informatique",
-        "Suivi des maintenances préventives et curatives",
-        "Génération de rapports automatisés",
-        "Tableau de bord avec statistiques",
-        "Système de notifications",
-        "Export des données en PDF/Excel"
-      ],
-      images: ["/images/project2-1.jpg", "/images/project2-2.jpg"],
-      demoLink: "#",
-      githubLink: "#"
-    },
-    3: {
-      title: "Journal Trading by Fx Hent",
-      description: "Application web pour la gestion de journal de trading, permettant de suivre et analyser les performances des trades en temps réel.",
-      technologies: ["HTML/CSS/JS", "Bootstrap", "PHP", "MySQL"],
-      features: [
-        "Enregistrement des trades avec métadonnées",
-        "Analyse des performances",
-        "Graphiques de résultats",
-        "Export des données",
-        "Interface utilisateur intuitive",
-        "Sécurité des données"
-      ],
-      images: ["/images/project3-1.jpg", "/images/project3-2.jpg"],
-      demoLink: "#",
-      githubLink: "#"
-    },
-    4: {
-      title: "DigitVote - Plateforme de Vote en Ligne",
-      description: "Système de vote numérique sécurisé permettant aux électeurs de voter depuis n'importe quel endroit. Garantit l'anonymat et l'intégrité du processus électoral.",
-      technologies: ["HTML/CSS/JS", "Bootstrap", "PHP", "MySQL", "Cryptographie"],
-      features: [
-        "Authentification sécurisée des électeurs",
-        "Vote anonyme et vérifiable",
-        "Interface adaptée mobile et desktop",
-        "Résultats en temps réel",
-        "Audit et traçabilité",
-        "Export des résultats"
-      ],
-      images: ["/vote.png"],
-      demoLink: "#",
-      githubLink: "#"
-    },
-    5: {
-      title: "Gestion des Infrastructures MPS",
-      description: "Application Symfony pour la gestion des infrastructures au sein du Ministère de la Population et des Solidarités. Suivi complet des équipements et des maintenances.",
-      technologies: ["Symfony", "PHP", "MySQL", "Twig", "Doctrine ORM"],
-      features: [
-        "Inventaire complet des infrastructures",
-        "Suivi des interventions de maintenance",
-        "Gestion des coûts et budgets",
-        "Rapports analytiques détaillés",
-        "Workflows d'approbation",
-        "Interface d'administration complète"
-      ],
-      images: ["/infrastructure.png"],
-      demoLink: "#",
-      githubLink: "#"
-    }
-  };
+import {
+  SiHtml5, SiCss3, SiJavascript, SiBootstrap, SiPhp, SiMysql,
+  SiSymfony, SiReact, SiPostgresql, SiDoctrine
+} from 'react-icons/si';
+import { FaChartBar } from 'react-icons/fa';
+
+export const projectsData = [
+  {
+    id: 1,
+    title: 'Portfolio Personnel',
+    category: 'web',
+    description: 'Site portfolio moderne développé avec React pour présenter mes projets, compétences et parcours. Design responsive avec thème sombre/clair et animations fluides.',
+    technologies: [
+      { name: 'React', icon: SiReact, color: '#61DAFB' },
+      { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
+      { name: 'Bootstrap', icon: SiBootstrap, color: '#7952B3' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+    ],
+    features: [
+      'Design responsive et mobile-first',
+      'Mode sombre/clair persistant',
+      'Animations fluides et AOS',
+      'Formulaire de contact avec EmailJS',
+      'Filtrage dynamique des projets',
+    ],
+    images: ['/portf.png'],
+    demoLink: '#accueil',
+    githubLink: 'https://github.com/Mahenintsoaa',
+    year: '2026',
+    role: 'Développeur Full-Stack',
+  },
+  {
+    id: 2,
+    title: 'Gestion des Infrastructures MPS',
+    category: 'web',
+    description: 'Application web complète développée lors de mon stage au Ministère de la Population et des Solidarités pour la gestion et le suivi du parc d\'infrastructures.',
+    technologies: [
+      { name: 'Symfony 7', icon: SiSymfony, color: '#000000' },
+      { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+      { name: 'Doctrine', icon: SiDoctrine, color: '#FC6A31' },
+    ],
+    features: [
+      'Inventaire centralisé des infrastructures',
+      'Suivi des interventions de maintenance',
+      'Workflows d\'approbation hiérarchiques',
+      'Rapports analytiques détaillés',
+      'Interface d\'administration complète',
+      'Gestion des rôles et permissions',
+    ],
+    images: ['/infrastructure.png'],
+    demoLink: '#',
+    githubLink: '#',
+    year: '2025',
+    role: 'Développeur Web (Stage)',
+  },
+  {
+    id: 3,
+    title: 'Application de Gestion de Stocks',
+    category: 'web',
+    description: 'Application web complète pour la gestion des entrées/sorties et l\'inventaire avec Symfony 7 et PostgreSQL. Suivi en temps réel des mouvements de stock.',
+    technologies: [
+      { name: 'Symfony 7', icon: SiSymfony, color: '#000000' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+      { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+      { name: 'Bootstrap', icon: SiBootstrap, color: '#7952B3' },
+    ],
+    features: [
+      'Gestion des entrées/sorties de stock',
+      'Inventaire en temps réel',
+      'Alertes de stock bas',
+      'Historique des mouvements',
+      'Tableau de bord analytique',
+    ],
+    images: ['/images/project2-1.jpg'],
+    demoLink: '#',
+    githubLink: '#',
+    year: '2025',
+    role: 'Développeur Full-Stack',
+  },
+  {
+    id: 4,
+    title: 'Journal Trading by Fx Hent',
+    category: 'web',
+    description: 'Application web de journal de trading pour suivre et analyser les performances des transactions en temps réel. Conçue pour les traders indépendants.',
+    technologies: [
+      { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
+      { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+      { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+    ],
+    features: [
+      'Enregistrement des trades avec métadonnées',
+      'Analyse des performances trading',
+      'Graphiques interactifs (Chart.js)',
+      'Historique complet des opérations',
+      'Export des données en CSV/PDF',
+    ],
+    images: ['/images/project3-1.jpg'],
+    demoLink: '#',
+    githubLink: '#',
+    year: '2025',
+    role: 'Développeur Full-Stack',
+  },
+  {
+    id: 5,
+    title: 'DigitVote - Plateforme de Vote',
+    category: 'web',
+    description: 'Système de vote numérique sécurisé permettant aux électeurs de voter à distance. Garantit l\'anonymat, l\'intégrité et la transparence du processus électoral.',
+    technologies: [
+      { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+      { name: 'Bootstrap', icon: SiBootstrap, color: '#7952B3' },
+    ],
+    features: [
+      'Authentification sécurisée des électeurs',
+      'Vote anonyme et vérifiable',
+      'Résultats en temps réel',
+      'Audit et traçabilité complète',
+      'Interface mobile et desktop',
+    ],
+    images: ['/vote.png'],
+    demoLink: '#',
+    githubLink: '#',
+    year: '2025',
+    role: 'Développeur Full-Stack',
+  },
+];

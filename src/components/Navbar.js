@@ -1,23 +1,23 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
-import { ThemeContext } from '../contexts/ThemeContext';
+import { ThemeContext } from '../context/ThemeContext';
 import { FaMoon, FaSun } from 'react-icons/fa';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navigation = () => {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('accueil');
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      // Update active section
       const sections = document.querySelectorAll('section[id]');
       const scrollY = window.pageYOffset;
       sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 120;
         const sectionId = section.getAttribute('id');
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
           setActiveLink(sectionId);
@@ -30,69 +30,65 @@ const Navigation = () => {
 
   const scrollToSection = (e, id) => {
     e.preventDefault();
+    setExpanded(false);
     const element = document.getElementById(id);
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 70,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
     }
   };
 
+  const links = [
+    { id: 'accueil', label: 'Accueil' },
+    { id: 'apropos', label: 'À propos' },
+    { id: 'competences', label: 'Compétences' },
+    { id: 'portfolio', label: 'Projets' },
+    { id: 'formation', label: 'Formation' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
   return (
-    <Navbar expand="lg" fixed="top" className={scrolled ? 'scrolled' : ''}>
+    <Navbar
+      expand="lg"
+      fixed="top"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
+      className={`custom-navbar ${scrolled ? 'scrolled' : ''}`}
+    >
       <Container>
-        <Navbar.Brand href="#accueil" onClick={(e) => scrollToSection(e, 'accueil')}>
-          <span>&lt;</span>Portfolio<span>/&gt;</span>
+        <Navbar.Brand
+          href="#accueil"
+          onClick={(e) => scrollToSection(e, 'accueil')}
+          className="brand-logo"
+        >
+          <span className="brand-bracket">&lt;</span>
+          <span className="brand-text">Mahenintsoa</span>
+          <span className="brand-bracket">/&gt;</span>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarNav" />
+        <div className="d-flex align-items-center gap-2 order-lg-last">
+          <Button
+            variant="link"
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label="Changer le thème"
+          >
+            {darkMode ? <FaSun /> : <FaMoon />}
+          </Button>
+          <Navbar.Toggle aria-controls="navbarNav" className="custom-toggler">
+            {expanded ? <FiX /> : <FiMenu />}
+          </Navbar.Toggle>
+        </div>
         <Navbar.Collapse id="navbarNav">
-          <Nav className="ms-auto">
-            <Nav.Link 
-              href="#accueil" 
-              onClick={(e) => scrollToSection(e, 'accueil')}
-              className={activeLink === 'accueil' ? 'active' : ''}
-            >
-              Accueil
-            </Nav.Link>
-            <Nav.Link 
-              href="#apropos" 
-              onClick={(e) => scrollToSection(e, 'apropos')}
-              className={activeLink === 'apropos' ? 'active' : ''}
-            >
-              À propos
-            </Nav.Link>
-            <Nav.Link 
-              href="#competences" 
-              onClick={(e) => scrollToSection(e, 'competences')}
-              className={activeLink === 'competences' ? 'active' : ''}
-            >
-              Compétences
-            </Nav.Link>
-            <Nav.Link 
-              href="#portfolio" 
-              onClick={(e) => scrollToSection(e, 'portfolio')}
-              className={activeLink === 'portfolio' ? 'active' : ''}
-            >
-              Projets
-            </Nav.Link>
-            <Nav.Link 
-              href="#formation" 
-              onClick={(e) => scrollToSection(e, 'formation')}
-              className={activeLink === 'formation' ? 'active' : ''}
-            >
-              Formation
-            </Nav.Link>
-            <Nav.Link 
-              href="#contact" 
-              onClick={(e) => scrollToSection(e, 'contact')}
-              className={activeLink === 'contact' ? 'active' : ''}
-            >
-              Contact
-            </Nav.Link>
-            <Button variant="link" className="theme-toggle" onClick={toggleTheme} aria-label="Changer le thème">
-              {darkMode ? <FaSun /> : <FaMoon />}
-            </Button>
+          <Nav className="ms-auto nav-links">
+            {links.map(link => (
+              <Nav.Link
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={(e) => scrollToSection(e, link.id)}
+                className={`nav-item-link ${activeLink === link.id ? 'active' : ''}`}
+              >
+                {link.label}
+              </Nav.Link>
+            ))}
           </Nav>
         </Navbar.Collapse>
       </Container>

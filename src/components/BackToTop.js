@@ -5,21 +5,19 @@ const BackToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setVisible(window.pageYOffset > 300);
-    };
+    const toggleVisibility = () => setVisible(window.pageYOffset > 400);
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <div className={`back-to-top ${visible ? 'active' : ''}`} onClick={scrollToTop}>
+    <button
+      className={`back-to-top-btn ${visible ? 'visible' : ''}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Retour en haut"
+    >
       <FaArrowUp />
-    </div>
+    </button>
   );
 };
 

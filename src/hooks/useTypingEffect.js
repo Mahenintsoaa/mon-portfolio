@@ -6,25 +6,23 @@ const useTypingEffect = (texts, typingSpeed = 100, deletingSpeed = 50, pauseTime
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const currentText = texts[index];
-      if (!isDeleting) {
-        // Typing
-        setDisplayText(currentText.substring(0, displayText.length + 1));
-        if (displayText.length + 1 === currentText.length) {
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        // Deleting
-        setDisplayText(currentText.substring(0, displayText.length - 1));
-        if (displayText.length - 1 === 0) {
-          setIsDeleting(false);
-          setIndex((prev) => (prev + 1) % texts.length);
-        }
-      }
-    }, isDeleting ? deletingSpeed : typingSpeed);
+    const currentText = texts[index];
+    let timeout;
 
-    return () => clearTimeout(timer);
+    if (!isDeleting && displayText === currentText) {
+      timeout = setTimeout(() => setIsDeleting(true), pauseTime);
+    } else if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      setIndex((prev) => (prev + 1) % texts.length);
+    } else {
+      timeout = setTimeout(() => {
+        setDisplayText(
+          currentText.substring(0, displayText.length + (isDeleting ? -1 : 1))
+        );
+      }, isDeleting ? deletingSpeed : typingSpeed);
+    }
+
+    return () => clearTimeout(timeout);
   }, [displayText, isDeleting, index, texts, typingSpeed, deletingSpeed, pauseTime]);
 
   return displayText;

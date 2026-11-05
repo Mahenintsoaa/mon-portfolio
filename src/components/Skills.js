@@ -1,114 +1,89 @@
 import React, { useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import AOS from 'aos';
+import { skillCategories, technologies } from '../data/skillsData';
 
 const Skills = () => {
-  const skillBarsRef = useRef([]);
+  const barsRef = useRef([]);
 
   useEffect(() => {
-    AOS.init();
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const bar = entry.target;
           const width = bar.getAttribute('data-width');
-          bar.style.width = width;
+          setTimeout(() => { bar.style.width = width; }, 100);
           observer.unobserve(bar);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
 
-    skillBarsRef.current.forEach(bar => {
-      if (bar) observer.observe(bar);
-    });
-
+    barsRef.current.forEach(bar => { if (bar) observer.observe(bar); });
     return () => observer.disconnect();
   }, []);
 
+  let barIndex = 0;
+
   return (
-    <section id="competences" className="skills">
+    <section id="competences" className="section-skills">
       <Container>
-        <h2 className="section-title" data-aos="fade-up">Mes compétences</h2>
-        <Row>
-          <Col md={6}>
-            <div className="skill-item" data-aos="fade-right">
-              <div className="skill-name">
-                <span>HTML/CSS</span>
-                <span>90%</span>
+        <div className="section-header" data-aos="fade-up">
+          <span className="section-subtitle">Ce que je maîtrise</span>
+          <h2 className="section-heading">Mes compétences</h2>
+        </div>
+
+        <Row className="g-4">
+          {skillCategories.map((category, catIdx) => (
+            <Col lg={6} key={catIdx} data-aos="fade-up" data-aos-delay={catIdx * 100}>
+              <div className="skill-category-card">
+                <div className="skill-category-header">
+                  <span className="category-icon">{category.icon}</span>
+                  <h3>{category.title}</h3>
+                </div>
+                <div className="skill-list">
+                  {category.skills.map((skill, idx) => {
+                    const IconComponent = skill.icon;
+                    const currentIndex = barIndex++;
+                    return (
+                      <div className="skill-row" key={idx}>
+                        <div className="skill-info">
+                          <div className="skill-name-icon">
+                            <IconComponent style={{ color: skill.color }} size={20} />
+                            <span>{skill.name}</span>
+                          </div>
+                          <span className="skill-percentage">{skill.level}%</span>
+                        </div>
+                        <div className="skill-progress">
+                          <div
+                            className="skill-progress-bar"
+                            data-width={`${skill.level}%`}
+                            ref={el => barsRef.current[currentIndex] = el}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <div className="skill-bar">
-                <div className="skill-level" data-width="90%" ref={el => skillBarsRef.current[0] = el}></div>
-              </div>
-            </div>
-            <div className="skill-item" data-aos="fade-right" data-aos-delay="100">
-              <div className="skill-name">
-                <span>JavaScript</span>
-                <span>65%</span>
-              </div>
-              <div className="skill-bar">
-                <div className="skill-level" data-width="65%" ref={el => skillBarsRef.current[1] = el}></div>
-              </div>
-            </div>
-            <div className="skill-item" data-aos="fade-right" data-aos-delay="200">
-              <div className="skill-name">
-                <span>React</span>
-                <span>70%</span>
-              </div>
-              <div className="skill-bar">
-                <div className="skill-level" data-width="70%" ref={el => skillBarsRef.current[2] = el}></div>
-              </div>
-            </div>
-          </Col>
-          <Col md={6}>
-            <div className="skill-item" data-aos="fade-left" data-aos-delay="400">
-              <div className="skill-name">
-                <span>PHP/MySQL</span>
-                <span>75%</span>
-              </div>
-              <div className="skill-bar">
-                <div className="skill-level" data-width="75%" ref={el => skillBarsRef.current[3] = el}></div>
-              </div>
-            </div>
-            <div className="skill-item" data-aos="fade-left" data-aos-delay="500">
-              <div className="skill-name">
-                <span>Python</span>
-                <span>50%</span>
-              </div>
-              <div className="skill-bar">
-                <div className="skill-level" data-width="50%" ref={el => skillBarsRef.current[4] = el}></div>
-              </div>
-            </div>
-            <div className="skill-item" data-aos="fade-right">
-              <div className="skill-name">
-                <span>Symfony</span>
-                <span>68%</span>
-              </div>
-              <div className="skill-bar">
-                <div className="skill-level" data-width="68%" ref={el => skillBarsRef.current[5] = el}></div>
-              </div>
-            </div>
-          </Col>
+            </Col>
+          ))}
         </Row>
-        <Row className="mt-5">
-          <Col xs={12} data-aos="fade-up">
-            <div className="code-snippet">
-              <span className="code-keyword">const</span> <span className="code-function">developer</span> = {'{'}
-              <br />
-              &nbsp;&nbsp;name: <span className="code-string">"RANAIVOARILALAO Mahenintsoa"</span>,<br />
-              &nbsp;&nbsp;title: <span className="code-string">"Étudiant en Informatique"</span>,<br />
-              &nbsp;&nbsp;skills: [<span className="code-string">"Symfony"</span>, <span className="code-string">"React"</span>, <span className="code-string">"PHP"</span>],<br />
-              &nbsp;&nbsp;passion: <span className="code-string">"Créer des applications web innovantes"</span><br />
-              {'};'}<br />
-              <br />
-              <br />
-              <span className="code-comment">{'// Toujours en apprentissage'}</span><br />
-              <span className="code-keyword">while</span>(coding) {'{'}<br />
-              &nbsp;&nbsp;learnNewTech();<br />
-              &nbsp;&nbsp;buildProjects();<br />
-              {'}'}
+
+        <div className="tech-marquee-wrapper" data-aos="fade-up">
+          <h3 className="tech-marquee-title">Technologies avec lesquelles je travaille</h3>
+          <div className="tech-marquee">
+            <div className="tech-marquee-track">
+              {[...technologies, ...technologies].map((tech, idx) => {
+                const Icon = tech.icon;
+                return (
+                  <div className="tech-badge" key={idx}>
+                    <Icon style={{ color: tech.color }} size={24} />
+                    <span>{tech.name}</span>
+                  </div>
+                );
+              })}
             </div>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Container>
     </section>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import { projectsData } from '../data/projectsData';
 import ProjectModal from './ProjectModal';
 
@@ -9,69 +10,101 @@ const Portfolio = () => {
   const [showModal, setShowModal] = useState(false);
 
   const filters = [
-    { key: 'all', label: 'Tous' },
+    { key: 'all', label: 'Tous les projets' },
     { key: 'web', label: 'Web' },
     { key: 'mobile', label: 'Mobile' },
-    { key: 'design', label: 'Design' }
+    { key: 'design', label: 'Design' },
   ];
 
-  // Mapping des projets avec catégories (vous pouvez les définir dans projectsData)
-  const projects = [
-    { id: 1, category: 'web', ...projectsData[1] },
-    { id: 2, category: 'web', ...projectsData[2] },
-    { id: 3, category: 'web', ...projectsData[3] },
-    { id: 4, category: 'web', ...projectsData[4] },
-    { id: 5, category: 'web', ...projectsData[5] }
-  ];
-
-  const filteredProjects = filter === 'all' ? projects : projects.filter(p => p.category === filter);
-
-  const handleViewProject = (project) => {
-    setSelectedProject(project);
-    setShowModal(true);
-  };
+  const filteredProjects = filter === 'all'
+    ? projectsData
+    : projectsData.filter(p => p.category === filter);
 
   return (
-    <section id="portfolio" className="portfolio">
+    <section id="portfolio" className="section-portfolio">
       <Container>
-        <h2 className="section-title" data-aos="fade-up">Mes projets</h2>
+        <div className="section-header" data-aos="fade-up">
+          <span className="section-subtitle">Mon travail</span>
+          <h2 className="section-heading">Projets réalisés</h2>
+          <p className="section-description">
+            Une sélection de projets démontrant mes compétences en développement web
+          </p>
+        </div>
+
         <div className="portfolio-filters" data-aos="fade-up">
           {filters.map(f => (
-            <Button
+            <button
               key={f.key}
-              variant="outline-primary"
-              className={filter === f.key ? 'active' : ''}
+              className={`filter-btn ${filter === f.key ? 'active' : ''}`}
               onClick={() => setFilter(f.key)}
             >
               {f.label}
-            </Button>
+            </button>
           ))}
         </div>
-        <Row id="portfolio-grid">
+
+        <Row className="g-4">
           {filteredProjects.map((project, index) => (
-            <Col md={4} key={project.id} className="portfolio-card" data-category={project.category}>
-              <div className="portfolio-item" data-aos="zoom-in" data-aos-delay={200 + index * 100}>
-                <div className="portfolio-img">
-                  <img 
-                    src={project.images[0]} 
-                    alt={project.title} 
-                    style={{ width: '95%', height: '95%', objectFit: 'cover' }} 
-                  />
-                  <div className="portfolio-overlay">
-                    <Button variant="light" onClick={() => handleViewProject(project)}>Voir les détails</Button>
+            <Col md={6} lg={4} key={project.id} data-aos="fade-up" data-aos-delay={index * 80}>
+              <div className="project-card">
+                <div className="project-image-wrapper">
+                  <img src={project.images[0]} alt={project.title} className="project-image" />
+                  <div className="project-overlay">
+                    <button
+                      className="project-view-btn"
+                      onClick={() => { setSelectedProject(project); setShowModal(true); }}
+                    >
+                      Voir les détails
+                    </button>
                   </div>
+                  <span className="project-year">{project.year}</span>
                 </div>
-                <div className="portfolio-info">
-                  <h4>{project.title}</h4>
-                  <p>{project.description.substring(0, 80)}...</p>
-                  <div className="portfolio-tech">
-                    {project.technologies.slice(0, 3).map(tech => (
-                      <span key={tech} className="tech-tag">{tech}</span>
-                    ))}
+                <div className="project-body">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-role">{project.role}</p>
+                  <p className="project-description">
+                    {project.description.substring(0, 90)}...
+                  </p>
+                  <div className="project-techs">
+                    {project.technologies.slice(0, 4).map((tech, i) => {
+                      const Icon = tech.icon;
+                      return (
+                        <span className="tech-pill" key={i} title={tech.name}>
+                          <Icon style={{ color: tech.color }} size={14} />
+                        </span>
+                      );
+                    })}
                   </div>
-                  <Button variant="primary" size="sm" className="mt-3" onClick={() => handleViewProject(project)}>
-                    Voir le projet
-                  </Button>
+                  <div className="project-actions">
+                    <button
+                      className="project-btn-primary"
+                      onClick={() => { setSelectedProject(project); setShowModal(true); }}
+                    >
+                      Détails
+                    </button>
+                    {project.githubLink !== '#' && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-btn-icon"
+                        aria-label="GitHub"
+                      >
+                        <FiGithub />
+                      </a>
+                    )}
+                    {project.demoLink !== '#' && (
+                      <a
+                        href={project.demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-btn-icon"
+                        aria-label="Démo"
+                      >
+                        <FiExternalLink />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </Col>
