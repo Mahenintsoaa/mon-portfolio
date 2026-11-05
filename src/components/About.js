@@ -56,8 +56,8 @@ const About = () => {
                 <img src="/photo.jpg" alt="Mahenintsoa" />
               </div>
               <div className="about-experience-badge">
-                <span className="exp-number">2+</span>
-                <span className="exp-label">Années d'expérience</span>
+                <span className="exp-number">5+</span>
+                <span className="exp-label">Projets réalisés</span>
               </div>
             </div>
           </Col>
