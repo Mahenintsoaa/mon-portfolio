@@ -2,7 +2,6 @@ import {
   SiHtml5, SiCss3, SiJavascript, SiBootstrap, SiPhp, SiMysql,
   SiSymfony, SiReact, SiPostgresql, SiDoctrine
 } from 'react-icons/si';
-import { FaChartBar } from 'react-icons/fa';
 
 export const projectsData = [
   {

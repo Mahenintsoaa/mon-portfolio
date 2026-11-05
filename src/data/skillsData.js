@@ -2,7 +2,7 @@ import {
   SiHtml5, SiCss3, SiJavascript, SiReact, SiBootstrap,
   SiPhp, SiSymfony, SiPython, SiDjango, SiMysql, SiPostgresql,
   SiSqlite, SiGit, SiGithub, SiLinux,
-  SiC, SiFigma, SiVmware
+  SiC
 } from 'react-icons/si';
 import {
   FaNetworkWired,
