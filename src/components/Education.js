@@ -42,7 +42,7 @@ const Education = () => {
     },
     {
       type: 'diploma',
-      icon: <FaSchool />,
+      icon: <FaGraduationCap />,
       title: 'Baccalauréat série OSE',
       subtitle: 'Lycée Ambohimanambola, Antananarivo',
       period: '2021 - 2022',

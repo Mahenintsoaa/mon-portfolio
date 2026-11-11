@@ -108,6 +108,8 @@ export const projectsData = [
     category: 'web',
     description: 'Système de vote numérique sécurisé permettant aux électeurs de voter à distance. Garantit l\'anonymat, l\'intégrité et la transparence du processus électoral.',
     technologies: [
+      { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
+      { name: 'CSS3', icon: SiCss3, color: '#1572B6' },
       { name: 'PHP', icon: SiPhp, color: '#777BB4' },
       { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
       { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },

@@ -29,8 +29,10 @@ const Contact = () => {
     if (Object.keys(newErrors).length > 0) { setErrors(newErrors); return; }
 
     setSending(true);
-    const serviceID = 'service_27fjege';
-    const templateID = 'YOUR_TEMPLATE_ID';
+    
+    // ✅ TES VRAIS IDENTIFIANTS SONT ICI :
+    const serviceID = 'service_mh47j0i';
+    const templateID = 'template_e99mlqe';
     const publicKey = 'SIiS7U-A08crb8rZv';
 
     emailjs.sendForm(serviceID, templateID, form.current, publicKey)
@@ -48,7 +50,7 @@ const Contact = () => {
 
   const contactInfos = [
     { icon: <FaEnvelope />, label: 'Email', value: 'mahenintsoatrade@gmail.com', href: 'mailto:mahenintsoatrade@gmail.com' },
-    { icon: <FaPhone />, label: 'Téléphone', value: '+261 34 70 949 97', href: 'tel:+261347094997' },
+    { icon: <FaPhone />, label: 'Téléphone', value: '+261 34 70 949 97 / +261 32 99 516 57', href: 'tel:+261347094997' },
     { icon: <FaMapMarkerAlt />, label: 'Localisation', value: 'Antananarivo, Madagascar' },
   ];
 
