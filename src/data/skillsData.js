@@ -15,7 +15,6 @@ import { TbBrandVscode } from 'react-icons/tb';
 export const skillCategories = [
   {
     title: 'Frontend',
-    icon: '💻',
     skills: [
       { name: 'HTML5', level: 80, icon: SiHtml5, color: '#E34F26' },
       { name: 'CSS3', level: 75, icon: SiCss3, color: '#1572B6' },
@@ -26,7 +25,6 @@ export const skillCategories = [
   },
   {
     title: 'Backend',
-    icon: '⚙️',
     skills: [
       { name: 'PHP', level: 70, icon: SiPhp, color: '#777BB4' },
       { name: 'Symfony 7', level: 60, icon: SiSymfony, color: '#000000' },
@@ -37,7 +35,6 @@ export const skillCategories = [
   },
   {
     title: 'Bases de données',
-    icon: '🗄️',
     skills: [
       { name: 'MySQL', level: 80, icon: SiMysql, color: '#4479A1' },
       { name: 'PostgreSQL', level: 60, icon: SiPostgresql, color: '#4169E1' },
@@ -46,7 +43,6 @@ export const skillCategories = [
   },
   {
     title: 'Outils & DevOps',
-    icon: '🛠️',
     skills: [
       { name: 'Git', level: 75, icon: SiGit, color: '#F05032' },
       { name: 'GitHub', level: 75, icon: SiGithub, color: '#181717' },
@@ -56,7 +52,6 @@ export const skillCategories = [
   },
   {
     title: 'Systèmes & Réseaux',
-    icon: '🌐',
     skills: [
       { name: 'Linux (Ubuntu/Debian)', level: 70, icon: SiLinux, color: '#FCC624' },
       { name: 'Windows Server', level: 45, icon: FaWindows, color: '#0078D4' },
