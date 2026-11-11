@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { FaGraduationCap, FaCertificate, FaSchool } from 'react-icons/fa';
+import { FaGraduationCap, FaCertificate } from 'react-icons/fa';
 
 const Education = () => {
   const educationItems = [
